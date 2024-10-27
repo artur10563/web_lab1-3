@@ -1,0 +1,55 @@
+﻿@using Labs_WEB.DTO
+@model IEnumerable<ItemDTO>
+
+
+<div class="container mt-4">
+	@* lab2 *@
+	<a href="@Url.Action("CreateItem", "Shop")" class="btn btn-primary">
+		New item
+	</a>
+	@* end lab2 *@
+	<h2>Items List</h2>
+	<table class="table table-bordered table-striped">
+		<thead class="table-dark">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Tags</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>@item.Id</td>
+					<td>@item.Name</td>
+					<td>@item.Price</td>
+					<td>@item.Quantity</td>
+					<td>
+						@string.Join(", ", item.Tags.Select(x => x.Name)) @* lab3 *@
+					</td>
+
+					<td>
+						<a href="@Url.Action("Purchase", "Shop", new { itemId = item.Id })" class="btn btn-primary">
+							Purchase
+						</a>
+
+						@* lab2 *@
+						<a href="@Url.Action("DeleteItem", "Shop", new { itemId = item.Id })" class="btn btn-danger">
+							Delete
+						</a>
+
+						<a href="@Url.Action("EditItem", "Shop", new { itemId = item.Id })" class="btn btn-success">
+							Edit
+						</a>
+						@* lab2 end *@
+
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

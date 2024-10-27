@@ -1,0 +1,32 @@
+﻿@using Labs_WEB.DTO
+@{
+    var item = ViewBag.Item as ItemDTO;
+}
+
+
+<div class="container mt-4">
+    <h2>Purchase Item</h2>
+
+    @if (item != null)
+    {
+        <h3>Item Details</h3>
+        <ul class="list-group mb-3">
+            <li class="list-group-item"><strong>Name:</strong> @item.Name</li>
+            <li class="list-group-item"><strong>Price:</strong> @item.Price.ToString("C")</li>
+            <li class="list-group-item"><strong>Quantity:</strong> @item.Quantity</li>
+        </ul>
+    }
+    else
+    {
+        <p>Item not found.</p>
+    }
+
+    <form asp-action="Purchase" method="post">
+        <input type="hidden" name="ItemId" value="@item.Id" />
+        <div class="mb-3">
+            <label for="PurchasedBy" class="form-label">Purchased By</label>
+            <input type="text" class="form-control" name="PurchasedBy" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Purchase</button>
+    </form>
+</div>

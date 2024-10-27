@@ -1,0 +1,28 @@
+﻿@using Labs_WEB.DTO
+@model IEnumerable<PurchaseDTO>
+
+
+<div class="container mt-4">
+	<h2>Items List</h2>
+	<table class="table table-bordered table-striped">
+		<thead class="table-dark">
+			<tr>
+				<th>Id</th>
+				<th>PurchasedBy</th>
+				<th>PurchasedAt</th>
+				<th>Item</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var pur in Model)
+			{
+				<tr>
+					<td>@pur.Id</td>
+					<td>@pur.PurchasedBy</td>
+					<td>@pur.PurchasedAt</td>
+					<td>@pur.ItemName</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
